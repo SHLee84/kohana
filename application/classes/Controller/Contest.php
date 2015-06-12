@@ -4,39 +4,32 @@ class Controller_Contest extends Controller {
 
 	public function action_index()
 	{
-		$view = View::factory('contest/all');
+		$member = ORM::factory('Member')->find_all();
+		$view = View::factory('contest/all')->set("members", $member);
 		$this->response->body($view);
 	}
 
 	public function action_details()
 	{
-
-		/*
-		 * Adding
-		 * 
-		$member = ORM::factory('Member');
-		$member->firstname = "Test";
-		$member->email = "test@test.com";
-
-		try
+		$id = $this->request->param('id');
+		$view = View::factory('contest/entry');
+		if (isset($id))
 		{
-			$member->save();
-		}
-		catch (ORM_Validation_Exception $e)
+			$member = ORM::factory('Member', $id);
+			if ($member->loaded())
+			{
+				$view->set("id", $id);
+				$view->set("firstname", $member->firstname);
+				$view->set("email", $member->email);	
+			}
+		} 
+		else if ($_POST)
 		{
-		$errors = $e->errors('Member');
-		}
+			$post_data = $_POST;
+			$member = ORM::factory('Member');
+			$member->firstname = $post_data["firstname"];
+			$member->email = $post_data["email"];
 
-		*/
-
-		/*
-		 * Edit
-		 *
-		$member = ORM::factory('Member', 10);
-		if ($member->loaded())
-		{
-			$member->firstname = 'New Name';
-			$member->email = 'new_test@test.com';
 			try
 			{
 				$member->save();
@@ -44,12 +37,12 @@ class Controller_Contest extends Controller {
 			catch (ORM_Validation_Exception $e)
 			{
 				$errors = $e->errors('Member');
-			}			
+			}
 		}
-		*/
-		$text = $this->request->param('
-			id');
-		$view = View::factory('contest/entry')->set('content', $text);
+		else
+		{
+			$view = View::factory('contest/entry');
+		}
 		$this->response->body($view);
 	}
 }
