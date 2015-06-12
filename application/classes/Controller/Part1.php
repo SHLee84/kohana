@@ -29,5 +29,4 @@ class Controller_Part1 extends Controller {
 		$view = View::factory('part1')->set('content', $text);
 		$this->response->body($view);
 	}
-
 }
