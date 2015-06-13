@@ -2,41 +2,41 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><?php echo 'Contest'; ?></title>
+		<title><?php echo __('Contest'); ?></title>
 	</head>
 	<body>
-		<a href="<?php echo '/kohana'; ?>"><?php echo 'Go to Part 1'; ?></a>
-		<h1><?php echo 'Welcome to Contest'; ?></h1>
+		<?php echo HTML::anchor(Route::url('default', array('controller' => 'part1')), __('Go to Part 1')); ?>
+		<h1><?php echo __('Welcome to Contest'); ?></h1>
 		<table>
 			<thead>
 				<tr>
 					<th>
-						<?php echo 'First Name'; ?>
+						<?php echo __('First Name'); ?>
 					</th>
 					<th>
-						<?php echo 'Email'; ?>
+						<?php echo __('Email Address'); ?>
 					</th>
 					<th>
-						<?php echo 'Action'; ?>
+						<?php echo __('Action'); ?>
 					</th>
 				</tr>
 			</thead>
 <?php 
 	if ( ! isset($members))
 	{ 
-		echo '<tfoot><tr><td colspan="3">No results found.</td></tr></tfoot>';
+		echo '<tfoot><tr><td colspan="3">'.__('No results found').'.</td></tr></tfoot>';
 	}
 	else
 	{ 
 		echo '<tbody>';
 		foreach($members as $member)
 		{
-			echo '<tr><td>'.$member->firstname.'</td><td>'.$member->email.'</td><td><a href="/kohana/contest/details/'.$member->id.'">Edit</a></td></tr>';
+			echo '<tr><td>'.$member->firstname.'</td><td>'.$member->email.'</td><td>'.HTML::anchor(Route::url('default', array('controller' => 'contest', 'action' => 'details', 'id' => $member->id)), __('Edit')).'</td></tr>';
 		}
 		echo '</tbody>';
  	} ?>
 		</table>
 		<br />
-		<a href="<?php echo '/kohana/contest/details'; ?>"><?php echo 'Add New'; ?></a>
+		<?php echo HTML::anchor(Route::url('default', array('controller' => 'contest', 'action' => 'details')), __('Add New')); ?>
 	</body>
 </html>

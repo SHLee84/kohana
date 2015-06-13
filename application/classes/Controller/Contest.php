@@ -29,8 +29,7 @@ class Controller_Contest extends Controller {
 			}
 			catch (ORM_Validation_Exception $e)
 			{
-				$errors = $e->errors('Member');
-				$view->set("errors", $errors);
+				$view->set("errors", $e->errors('Member'));
 			}
 			$this->redirect(Route::get('default')->uri(array(
 				'controller'	=> 'contest',

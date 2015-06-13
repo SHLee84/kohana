@@ -149,4 +149,8 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
 		'controller'	=> 'part1',
 		'action'		=> 'index',
+	))
+	->translate(array(
+		'<controller>' => TRUE,
+		'<action>'     => TRUE,
 	));

@@ -2,11 +2,11 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title><?php echo 'Part 1'; ?></title>
+		<title><?php echo __('Part 1'); ?></title>
 	</head>
 	<body>
-		<a href="<?php echo 'contest'; ?>"><?php echo 'contest'; ?></a>
-		<h1><?php echo 'This is FIZZBUZZ'; ?></h1>
+		<?php echo HTML::anchor(Route::url('default', array('controller' => 'contest')), __('Contest')); ?>
+		<h1><?php echo __('This is FIZZBUZZ'); ?></h1>
 		<p><?php echo $content; ?></p>
 	</body>
 </html>
