@@ -2,6 +2,7 @@
 
 class Controller_Part1 extends Controller {
 
+	// localhost/kohana OR localhost/kohana/part1
 	public function action_index()
 	{
 		$text = '';
@@ -10,6 +11,7 @@ class Controller_Part1 extends Controller {
 			$text .=$i.': ';
 			if ($i % 15 == 0)
 			{
+				// common denominator of 3 and 5: 15
 				$text .='fizzbuzz';
 			}
 			else if ($i % 3 == 0)
