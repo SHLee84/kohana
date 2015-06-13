@@ -19,11 +19,11 @@
 			{
 				echo '<input type="hidden" name="id" value="'.$id.'" />';
 			} ?>
-			<label for="firstname">First Name</label><br /><input id="firstname" name="firstname" type="text" placeholder="<?php echo 'First Name Here...'; ?>" value="<?php if (isset($firstname)) { echo $firstname; } ?>" /><br />
-			<span class="error"><?= Arr::get($errors, 'firstname'); ?></span>
-			<label for="email">Email Address</label><br /><input id="email" name="email" type="text" placeholder="<?php echo 'Enter Email Here...'; ?>" value="<?php if (isset($email)) { echo $email; } ?>" /><br />
-			<span class="error"><?= Arr::get($errors, 'email'); ?></span>
-			<button type="submit">Save</button>
+			<label for="firstname"><?php echo 'First Name'; ?></label><br /><input id="firstname" name="firstname" type="text" placeholder="<?php echo 'First Name Here...'; ?>" value="<?php if (isset($firstname)) { echo $firstname; } ?>" /><br />
+			<span class="error"><?php if (isset($errors)) { echo $errors->firstname; } ?></span>
+			<label for="email"><?php echo 'Email Address'; ?></label><br /><input id="email" name="email" type="text" placeholder="<?php echo 'Enter Email Here...'; ?>" value="<?php if (isset($email)) { echo $email; } ?>" /><br />
+			<span class="error"><?php if (isset($errors)) { echo $errors->email; } ?></span>
+			<button type="submit"><?php echo 'Save'; ?></button>
 		</form>
 	</body>
 </html>

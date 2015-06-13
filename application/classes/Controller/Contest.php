@@ -17,6 +17,7 @@ class Controller_Contest extends Controller {
 		{
 			$view = View::factory('contest/entry');
 			$post_data = $_POST;
+
 			$member = (isset($post_data["id"])) ? 
 				ORM::factory('Member', $post_data["id"]) : ORM::factory('Member');
 			$member->firstname = $post_data["firstname"];
@@ -25,17 +26,17 @@ class Controller_Contest extends Controller {
 			try
 			{
 				$member->save();
-				$this->redirect(Route::get('default')->uri(array(
-						'controller'	=> 'contest',
-						'action'		=> 'details',
-						'id'			=> $member->id,
-				)));
 			}
 			catch (ORM_Validation_Exception $e)
 			{
 				$errors = $e->errors('Member');
-				$view->bind('errors', $errors);
+				$view->set("errors", $errors);
 			}
+			$this->redirect(Route::get('default')->uri(array(
+				'controller'	=> 'contest',
+				'action'		=> 'details',
+				'id'			=> $member->id,
+			)));
 		}
 		else if (isset($id))
 		{

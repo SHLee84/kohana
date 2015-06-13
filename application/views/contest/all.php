@@ -11,13 +11,13 @@
 			<thead>
 				<tr>
 					<th>
-						First Name
+						<?php echo 'First Name'; ?>
 					</th>
 					<th>
-						Email
+						<?php echo 'Email'; ?>
 					</th>
 					<th>
-						Action
+						<?php echo 'Action'; ?>
 					</th>
 				</tr>
 			</thead>
