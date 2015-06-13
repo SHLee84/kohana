@@ -19,8 +19,10 @@
 			{
 				echo '<input type="hidden" name="id" value="'.$id.'" />';
 			} ?>
-			<input name="firstname" type="text" placeholder="<?php echo 'First Name Here...'; ?>" value="<?php if (isset($firstname)) { echo $firstname; } ?>" /><br />
-			<input name="email" type="text" placeholder="<?php echo 'Enter Email Here...'; ?>" value="<?php if (isset($email)) { echo $email; } ?>" /><br />
+			<label for="firstname">First Name</label><br /><input id="firstname" name="firstname" type="text" placeholder="<?php echo 'First Name Here...'; ?>" value="<?php if (isset($firstname)) { echo $firstname; } ?>" /><br />
+			<span class="error"><?= Arr::get($errors, 'firstname'); ?></span>
+			<label for="email">Email Address</label><br /><input id="email" name="email" type="text" placeholder="<?php echo 'Enter Email Here...'; ?>" value="<?php if (isset($email)) { echo $email; } ?>" /><br />
+			<span class="error"><?= Arr::get($errors, 'email'); ?></span>
 			<button type="submit">Save</button>
 		</form>
 	</body>

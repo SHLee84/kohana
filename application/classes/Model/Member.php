@@ -1,13 +1,16 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
 class Model_Member extends ORM {
-	protected $_rules = array(
-		'firstname' => array(
-			'not_empty' => NULL,
-		),
-		'email' => array(
-			'not_empty' => NULL,
-			'email' => 'email',
-		),
-	);
+	public function rules()
+	{
+		return array(
+			'firstname' => array(
+				array('not_empty'),
+			),
+			'email' => array(
+				array('not_empty'),
+				array('email'),
+			),
+		);
+	}	
 }

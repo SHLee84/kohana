@@ -12,29 +12,29 @@ class Controller_Contest extends Controller {
 	public function action_details()
 	{
 		$id = $this->request->param('id');
-		$view = View::factory('contest/entry');
 		
 		if ($_POST)
 		{
+			$view = View::factory('contest/entry');
 			$post_data = $_POST;
-			if (isset($post_data["id"]))
-			{
-				$member = ORM::factory('Member', $post_data["id"]);
-			}
-			else
-			{
-				$member = ORM::factory('Member');
-			}
+			$member = (isset($post_data["id"])) ? 
+				ORM::factory('Member', $post_data["id"]) : ORM::factory('Member');
 			$member->firstname = $post_data["firstname"];
 			$member->email = $post_data["email"];
 
 			try
 			{
 				$member->save();
+				$this->redirect(Route::get('default')->uri(array(
+						'controller'	=> 'contest',
+						'action'		=> 'details',
+						'id'			=> $member->id,
+				)));
 			}
 			catch (ORM_Validation_Exception $e)
 			{
 				$errors = $e->errors('Member');
+				$view->bind('errors', $errors);
 			}
 		}
 		else if (isset($id))
@@ -42,9 +42,17 @@ class Controller_Contest extends Controller {
 			$member = ORM::factory('Member', $id);
 			if ($member->loaded())
 			{
+				$view = View::factory('contest/entry');
 				$view->set("id", $id);
 				$view->set("firstname", $member->firstname);
-				$view->set("email", $member->email);	
+				$view->set("email", $member->email);
+			}
+			else
+			{
+				$this->redirect(Route::get('default')->uri(array(
+						'controller'	=> 'contest',
+						'action'		=> 'details',
+				)));
 			}
 		} 
 		else
