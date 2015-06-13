@@ -13,20 +13,18 @@ class Controller_Contest extends Controller {
 	{
 		$id = $this->request->param('id');
 		$view = View::factory('contest/entry');
-		if (isset($id))
-		{
-			$member = ORM::factory('Member', $id);
-			if ($member->loaded())
-			{
-				$view->set("id", $id);
-				$view->set("firstname", $member->firstname);
-				$view->set("email", $member->email);	
-			}
-		} 
-		else if ($_POST)
+		
+		if ($_POST)
 		{
 			$post_data = $_POST;
-			$member = ORM::factory('Member');
+			if (isset($post_data["id"]))
+			{
+				$member = ORM::factory('Member', $post_data["id"]);
+			}
+			else
+			{
+				$member = ORM::factory('Member');
+			}
 			$member->firstname = $post_data["firstname"];
 			$member->email = $post_data["email"];
 
@@ -39,6 +37,16 @@ class Controller_Contest extends Controller {
 				$errors = $e->errors('Member');
 			}
 		}
+		else if (isset($id))
+		{
+			$member = ORM::factory('Member', $id);
+			if ($member->loaded())
+			{
+				$view->set("id", $id);
+				$view->set("firstname", $member->firstname);
+				$view->set("email", $member->email);	
+			}
+		} 
 		else
 		{
 			$view = View::factory('contest/entry');
