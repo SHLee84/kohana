@@ -5,7 +5,10 @@
 		<title><?php echo __('Part 1'); ?></title>
 	</head>
 	<body>
-		<?php echo HTML::anchor(Route::url('default', array('controller' => 'contest')), __('Contest')); ?>
+<?php 
+		echo HTML::anchor(Route::url('default', 
+			array('controller' => 'contest')), __('Contest')); 
+?>
 		<h1><?php echo __('This is FIZZBUZZ'); ?></h1>
 		<p><?php echo $content; ?></p>
 	</body>

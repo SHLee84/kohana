@@ -1,7 +1,6 @@
 <?php
 
-return array
-(
+return array(
 	'Contest' => 'Concours',
 	'This is FIZZBUZZ' => 'C\'est FIZZBUZZ',
 	'Go to Part 1' => 'FRGo to Part 1FR',

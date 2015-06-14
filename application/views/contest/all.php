@@ -5,7 +5,8 @@
 		<title><?php echo __('Contest'); ?></title>
 	</head>
 	<body>
-		<?php echo HTML::anchor(Route::url('default', array('controller' => 'part1')), __('Go to Part 1')); ?>
+		<?php echo HTML::anchor(Route::url('default', 
+			array('controller' => 'part1')), __('Go to Part 1')); ?>
 		<h1><?php echo __('Welcome to Contest'); ?></h1>
 		<table>
 			<thead>
@@ -24,19 +25,25 @@
 <?php 
 	if (count($members) == 0)
 	{ 
-		echo '<tfoot><tr><td colspan="3">'.__('No Results Found').'.</td></tr></tfoot>';
+		echo '<tfoot><tr><td colspan="3">'.__('No Results Found').
+		'.</td></tr></tfoot>';
 	}
 	else
 	{ 
 		echo '<tbody>';
 		foreach($members as $member)
 		{
-			echo '<tr><td>'.$member->firstname.'</td><td>'.$member->email.'</td><td>'.HTML::anchor(Route::url('default', array('controller' => 'contest', 'action' => 'details', 'id' => $member->id)), __('Edit')).'</td></tr>';
+			echo '<tr><td>'.$member->firstname.'</td><td>'.$member->email.
+				'</td><td>'.HTML::anchor(Route::url('default', 
+				array('controller' => 'contest', 'action' => 'details', 
+				'id' => $member->id)), __('Edit')).'</td></tr>';
 		}
 		echo '</tbody>';
  	} ?>
 		</table>
 		<br />
-		<?php echo HTML::anchor(Route::url('default', array('controller' => 'contest', 'action' => 'details')), __('Add New')); ?>
+		<?php echo HTML::anchor(Route::url('default', 
+			array('controller' => 'contest', 'action' => 'details')), 
+				__('Add New')); ?>
 	</body>
 </html>
