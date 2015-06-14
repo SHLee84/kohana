@@ -22,9 +22,9 @@
 				</tr>
 			</thead>
 <?php 
-	if ( ! isset($members))
+	if (count($members) == 0)
 	{ 
-		echo '<tfoot><tr><td colspan="3">'.__('No results found').'.</td></tr></tfoot>';
+		echo '<tfoot><tr><td colspan="3">'.__('No Results Found').'.</td></tr></tfoot>';
 	}
 	else
 	{ 
